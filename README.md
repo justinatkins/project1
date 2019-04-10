@@ -1,20 +1,14 @@
 # project1
 ***USER STORIES***
--user should be able to see high score in corner of the screen
--user should be able to fly around in any direction 
--user should be able to destroy enemy spacecrafts and asteroids that enter screen with 
-flame whip 
+-user should be able to see high score and time left in corners of the screen
+-user should be able to destroy windows on buildings, streetlights and other items on the screen to increase high score within time limit
 
 ***NICE TO HAVES***
--enemies increase in speed and amount as you progress in game
--boss at the end of the level that are more difficult than asteroids and enemy spacecrafts
--ability to collect power-ups that give you temporary invincibility
--different weapon power-ups
+-power-ups that temporarily increase score
 
 
 ***STRETCH GOALS***
--multiple levels
-
+-user can smash windows on cars as they drive by for bonus points
 
 
 
