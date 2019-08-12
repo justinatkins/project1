@@ -1,105 +1,63 @@
-let score = 0 //start score at 0
-let time=60;
+let score = 0;
 
-let counter=setInterval(timer, 1000);
-
-function timer() {
-	time=time-1;
-	if (time <= 0) {
-		clearInterval(timer);
-		return time;
-	}
-	document.getElementById("timer").innerHTML=count + "s";
-}
-
-var upPressed = false;
-var downPressed = false;
-
-function downKeyHandle(event) {
-	if(event.keyCode === 40) {
-		downPressed = true; 
-	else(event.keyCode === 38) {
-		upPressed = true;
+$("#start").click(function () {
+	let timer = 100;
+	setInterval(function() {
+		timer--;
+		if(timer >= 0) {
+			span = document.getElementById("timer");
+			span.innerHTML = timer;
+			$('#timer').text(`Time: ${timer}`);
 		}
-	}
+		if (timer === 0) {
+			alert('Time Up!');
+			clearInterval(timer);
+		}
+	}, 1000);
+
+})
+
+const handleHit = (e) => {
+	const hit = $(e.target).css('backgroundImage');
+	checkValidHit(hit)
+	 // $(e.target.style.background = black
+	 	$(e.target).css({
+	 		//opacity: 0.75,
+	 		//width: 200,
+			//height: 250
+	 	});
+	$(e.target).css('opacity', 0.5);
 }
-// const button = document.querySelector('button');
 
-// button.addEventListener('click', event => {
-//   button.innerHTML = `Click count: ${event.detail}`;
-// });
+$('button').on('click', () => {
+  console.log('button click is working');
 
-const hitDetection = (e) => {
- const color = $(e.target).css('backgroundColor');
- checkSmallWindowHit(color)
- $(e.target).css('opacity', 0);
+$('.windows').on('click', handleHit);
 
-}
-
-$('button').on('click', () => { //instantiating start button
-  // console.log('click is working'); //checking start button
-
-  // createSmallWindows(30);
 });
 
-$('.smallwindows').on('click', hitDetection);
+const $div = $('<div/>');
+$('.windows').append($div);
 
-// const createSmallWindows = (numberOfSmallWindows) => {
-// 	for(let i = 0; i <= numberOfSmallWindows; i++) {
-// 		const $div = $('<div/>');
-// 		applyRandomColor($div);
-// 		$('.smallwindows').append($div);
-// 	}
-// }
-
-// const createLargeWindows = (numberOfLargeWindows) => {
-// 	for(let i = 0; i <= numberOfLargeWindows; i++) {
-// 		const $div = $('<div/>');
-// 		applyRandomColor($div);
-// 		$('.largewindows').append($div);
-// 	}
-// }
-
-const applyRandomColor = ($smallWindows) => {
-	const randomNumber = Math.floor(Math.random() * 3) +1;
-		if(randomNumber === 1){
-			$smallWindows.css('backgroundColor', 'yellow');
-		} else if (randomNumber === 2){
-			$smallWindows.css('backgroundColor', 'Light yellow1');
-		} else {
-			$smallWindows.css('backgroundColor', 'Light yellow3');
-		}
-
-}
-
-// const applyRandomColor = ($windows) => {
-// 	const randomNumber = Math.floor(Math.random() * 3) +1;
-// 		if(randomNumber === 1){
-// 			$windows.css('backgroundColor', 'yellow');
-// 		} else if (randomNumber === 2){
-// 			$windows.css('backgroundColor', 'Light yellow1');
-// 		} else {
-// 			$windows.css('backgroundColor', 'Light yellow3');
-// 		}
-
-// }
-
-const checkSmallWindowHit = (color) => {
-	console.log(color);
-	if(color === 'rgb(255,255,102)'){
-		score +=100;
+const checkValidHit = (hit) => {
+	console.log(hit);
+	if(hit === 'url("http://childrenschapel.org/biblestories/graphics/rainwindow.gif")'){
+		score += 100;
 	}
-	$('h1').text(`SCORE: ${score}`);
+
+	// $('#score').html(`Score: ${score}`);
+	$('#score').text(`Score: ${score}`);
+	// $("#score").html(score);
 }
 
-const checkWindowHit = (color) => {
-	console.log(color);
-	if(color === 'rgb(255,255,102)'){
-		e += 50;
-	$('score').text(`SCORE: ${score}`);
+document.getElementById('windows').onclick=function(){
+    let updatedScore = parseInt(document.getElementById("#score").value);
+    score++;
+    document.getElementById('updatedScore').value = score;
 }
 
-}
 
-document.addEventListener('downkey', downKeyHandler, false);
-document.addEventListener('upkey', upKeyHandler, false);
+
+
+
+
